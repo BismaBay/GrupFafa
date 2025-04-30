@@ -2,20 +2,24 @@
 DesainProyek
 
 Metode SCRUM
+Team Leader :
+Bisma Bayu Kresna 
+Supervisior :
+Joko Febrianto
 
 Anggota :
-1.Bisma Bayu Kresna (Team Leader)
+M.Medy Athallah
 
-2.Joko Febrianto (Supervisior)
+Devanda Syaputra
 
-3.M.Medy Athallah
+Rhenuka Ayusha
 
-4.Devanda Syaputra
+Fariz Hadi P
 
-5.Rhenuka Ayusha
+Shafli
 
-6.Fariz Hadi P
-7.Shafli
-8.M.Hakim Fahad
-9.M.Ikhsan
-10.Achmad Husni 
+M.Hakim Fahad
+
+M.Ikhsan
+10.
+Achmad Husni 
