@@ -23,5 +23,5 @@ Shafli
 M.Hakim Fahad
 
 M.Ikhsan
-10.
+
 Achmad Husni 
