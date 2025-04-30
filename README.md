@@ -1,13 +1,19 @@
 # GrupFafa
 DesainProyek
+
 Metode SCRUM
 
 Anggota :
-1.Bisma Bayu Kresna
+1.Bisma Bayu Kresna (Team Leader)
+
 2.Joko Febrianto (Supervisior)
+
 3.M.Medy Athallah
+
 4.Devanda Syaputra
+
 5.Rhenuka Ayusha
+
 6.Fariz Hadi P
 7.Shafli
 8.M.Hakim Fahad
