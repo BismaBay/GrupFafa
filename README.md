@@ -2,8 +2,10 @@
 DesainProyek
 
 Metode SCRUM
+
 Team Leader :
 Bisma Bayu Kresna 
+
 Supervisior :
 Joko Febrianto
 
