@@ -4,6 +4,7 @@ import joblib
 from keras_facenet import FaceNet
 from mtcnn import MTCNN
 import time
+import datetime  # Import datetime untuk mendapatkan waktu sekarang
 
 # Load model dan tools
 embedder = FaceNet()
@@ -39,10 +40,18 @@ while True:
 
             label = f"{pred} ({proba:.2f})"
 
-            # Gambar kotak dan label pada frame
-            cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 0), 2)
+            # Tentukan warna bounding box berdasarkan nilai probabilitas
+            if proba >= 0.8:
+                color = (0, 255, 0)      # Hijau
+            elif proba >= 0.5:
+                color = (0, 255, 255)    # Kuning
+            else:
+                color = (0, 0, 255)      # Merah
+
+            # Gambar kotak dan label pada frame dengan warna sesuai
+            cv2.rectangle(frame, (x, y), (x+w, y+h), color, 2)
             cv2.putText(frame, label, (x, y - 10),
-                        cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 255, 255), 2)
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.7, color, 2)
 
         except Exception as e:
             print(f"Error proses wajah: {e}")
@@ -51,6 +60,13 @@ while True:
     curr_time = time.time()
     fps = 1 / (curr_time - prev_time) if prev_time != 0 else 0
     prev_time = curr_time
+
+    # Dapatkan waktu sekarang dalam format jam:menit dd/mm/yyyy
+    current_time_str = datetime.datetime.now().strftime("%H:%M %d/%m/%Y")
+
+    # Tampilkan waktu di pojok kiri atas (posisi di bawah FPS)
+    cv2.putText(frame, current_time_str, (10, 60),
+                cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
 
     # Tampilkan FPS di pojok kiri atas
     cv2.putText(frame, f"FPS: {fps:.2f}", (10, 30),
