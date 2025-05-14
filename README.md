@@ -86,6 +86,7 @@ Tampilan Kecepatan Pemrosesan (FPS)
 Menyediakan informasi jumlah frame per detik (FPS) secara real-time sebagai indikator performa sistem dalam memproses gambar/video secara langsung.
 
 🖥️ Fitur Antarmuka dan Sistem:
+
 Halaman Beranda (Home)
 Tampilan utama yang menyajikan informasi ringkas dan akses cepat ke fitur inti sistem.
 
