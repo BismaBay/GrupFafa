@@ -54,7 +54,7 @@ while True:
                         cv2.FONT_HERSHEY_SIMPLEX, 0.7, color, 2)
 
         except Exception as e:
-            print(f"Error proses wajah: {e}")
+            print(f"Kesalahan proses wajah: {e}")
 
     # Hitung FPS
     curr_time = time.time()
