@@ -1,9 +1,9 @@
 # GrupFafa
 DesainProyek
 
-Metode SCRUM
+## Metode SCRUM
 
-Team Leader :
+### Team Leader :
 Bisma Bayu Kresna 
 
 Supervisior :
