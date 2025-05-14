@@ -76,6 +76,7 @@ while True:
 
     # Tekan tombol 'q' untuk keluar
     if cv2.waitKey(1) & 0xFF == ord('q'):
+        printf("Oye")
         break
 
 cap.release()
