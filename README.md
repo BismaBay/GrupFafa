@@ -1,9 +1,10 @@
 # GrupFafa
-DesainProyek
+Desain Proyek (Absensi Face Recognition)
 
-## Metode SCRUM
+## 🛠️Metode Yang Digunakan
+Metodologi pengembangan yang dipilih adalah SCRUM
 
-### Team Leader :
+## 🧑‍🤝‍🧑Peran Dalam Tim SCRUM
 Bisma Bayu Kresna 
 
 Supervisior :
