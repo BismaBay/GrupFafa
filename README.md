@@ -19,7 +19,7 @@ Fokus: Mengembangkan dan menguji model Face Recognition menggunakan machine lear
 
 Anggota :
 
-M.Meddy Athallah,
+M.Meydy Athallah,
 Devanda Syaputra,
 Rhenuka Ayusha,
 Fariz Hadi P.
