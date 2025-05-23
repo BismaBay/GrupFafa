@@ -1,6 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TEAM FAFA</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    #cameraVideo {
+      margin-top: 20px;
+      border: 4px solid #27548A;
+      border-radius: 10px;
+      width: 100%;
+      max-width: 600px;
+    }
+    .kamera-section {
+      background-color: #ff00ff;
+      border-radius: 50px;
+      width: 100%;
+      max-width: 800px;
+      padding: 80px 20px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .kamera-button, .start-camera-btn {
+      font-size: 48px;
+      font-weight: bold;
+      color: black;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      user-select: none;
+      margin: 0;
+    }
+    .start-camera-btn {
+      margin-top: 20px;
+      padding: 10px 40px;
+      background-color: #27548A;
+      color: white;
+      border-radius: 40px;
+      transition: background-color 0.3s ease;
+    }
+    .start-camera-btn:hover {
+      background-color: #f300ff;
+      color: black;
+    }
+ </style>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TEAM FAFA</title>
@@ -82,42 +127,36 @@
                 </div>
             </div>
         </section>
-        <!-- UNTUK ABSEN -->
-<section id="absen">
-    </style>
-</head>
-<body>
-    <!-- Wrapper Utama -->
-<div class="main-wrapper">
+       <!-- UNTUK ABSEN -->
+    <section id="absen">
+      <div class="main-wrapper">
+        <div class="kamera-section">
+          <h1 class="kamera-button">Akses Kamera</h1>
+          <button id="startCameraBtn" class="start-camera-btn">Mulai Kamera</button>
+          <video id="cameraVideo" autoplay playsinline></video>
+        </div>
 
-  <!-- Akses Kamera -->
-  <div class="kamera-section">
-    <h1 class="kamera-button">Akses Kamera</h1>
-  </div>
+        <div class="info-section">
+          <h3>Team Fafa</h3>
+          <p>Memberikan solusi absen yang lebih fleksibel dengan memanfaatkan face detection.</p>
+          <p>Email: <a href="mailto:FafaTeam@gmail.com">FafaTeam@gmail.com</a></p>
 
-  <!-- Informasi Tambahan -->
-  <div class="info-section">
-    <h3>Team Fafa</h3>
-    <p>Memberikan solusi absen yang lebih fleksibel dengan memanfaatkan face detection</p>
-    <p>Email: <a href="mailto:FafaTeam@gmail.com">FafaTeam@gmail.com</a></p>
+          <div class="connect-box">
+            <h4>Connect With Us</h4>
+            <input type="email" placeholder="Email Address" />
+          </div>
 
-    <div class="connect-box">
-      <h4>Connect With Us</h4>
-      <input type="email" placeholder="Email Address">
-    </div>
+          <p class="copyright">
+            Copyright, Fafa Team 2025, All rights reserved.
+          </p>
 
-    <p class="copyright">
-      Copyright, Fafa Team 2025, All right reserved.
-        </p>
-
-    <div class="icons">
-      <span>📱 🌐 👍 📸 ▶ 🐦</span>
-    </div>
-  </div>
-</div>
-
-</section>
-        <!-- UNTUK HISTORI -->
+          <div class="icons">
+            <span>📱 🌐 👍 📸 ▶ 🐦</span>
+          </div>
+        </div>
+      </div>
+    </section>
+   <!-- UNTUK HISTORI -->
 <section id="histori">
     <div class="container">
     <h1>History Absen</h1>
@@ -159,5 +198,25 @@
   </div>
 </section>
     </div>
+    
+      <script>
+        const startCameraBtn = document.getElementById('startCameraBtn');
+        const cameraVideo = document.getElementById('cameraVideo');
+    
+        startCameraBtn.addEventListener('click', async () => {
+          if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+            try {
+              const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
+              cameraVideo.srcObject = stream;
+              startCameraBtn.disabled = true;
+              startCameraBtn.textContent = 'Kamera Aktif';
+            } catch (err) {
+              alert('Gagal mengakses kamera: ' + err.message);
+            }
+          } else {
+            alert('Browser Anda tidak mendukung akses kamera.');
+          }
+        });
+      </script>
 </body>
 </html>
