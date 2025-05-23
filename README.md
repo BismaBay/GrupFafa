@@ -19,7 +19,7 @@ Fokus: Mengembangkan dan menguji model Face Recognition menggunakan machine lear
 
 Anggota :
 
-M.Meddy Athallah,
+M.Meydy Athallah,
 Devanda Syaputra,
 Rhenuka Ayusha,
 Fariz Hadi P.
@@ -98,3 +98,7 @@ Menyediakan akses ke histori kehadiran pengguna berdasarkan waktu, termasuk penc
 
 Integrasi Perangkat Tunggal (1 Device)
 Sistem dirancang untuk berjalan optimal pada satu perangkat terpusat, yang menggabungkan fungsi kamera, pemrosesan AI, dan antarmuka pengguna dalam satu unit.
+
+Progess 5/15/25
+1.Masih tahap konfigurasi datasheet
+2.Sedang dalam tahap pembuatan database php.sql
