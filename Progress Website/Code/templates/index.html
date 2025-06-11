@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TEAM FAFA - Absensi Deteksi Wajah</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <!-- Style untuk tombol-tombol -->
+    <style>
+        .histori-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .histori-header .btn-group {
+            display: flex;
+            gap: 10px; /* Jarak antar tombol */
+        }
+        .kamera-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        #refresh-histori-btn, #capture-btn, #reset-histori-btn {
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        #refresh-histori-btn {
+            background-color: #27548A;
+        }
+        #refresh-histori-btn:hover {
+            background-color: #3a70b8;
+        }
+        #capture-btn {
+            background-color: #4CAF50;
+            margin-left: auto;
+        }
+        #capture-btn:hover {
+            background-color: #45a049;
+        }
+        /* Style khusus untuk tombol reset yang bersifat destruktif */
+        #reset-histori-btn {
+            background-color: #d9534f; /* Warna merah */
+        }
+        #reset-histori-btn:hover {
+            background-color: #c9302c;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="wrapper">
+            <div class="logo"><a href="#home">TEAM FAFA</a></div>
+            <div class="menu">
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#absen">Absen</a></li>
+                    <li><a href="#histori">Histori</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="wrapper">
+        <!-- HOME SECTION -->
+        <section id="home">
+            <img src="https://img.freepik.com/free-vector/checklist-concept-illustration_114360-27941.jpg?ga=GA1.1.1169293302.1747217940&semt=ais_hybrid&w=740" alt="Ilustrasi Absensi"/>
+            <div class="kolom">
+                <p class="deskripsi">SELAMAT DATANG DI SISTEM ABSENSI BERBASIS DETEKSI WAJAH</p>
+                <h2>Team FAFA Kelas 3G JTD</h2>
+                <p>Kami menghadirkan solusi absensi modern yang cepat, akurat, dan tanpa kontak fisik. Dengan teknologi face detection, proses pencatatan kehadiran menjadi lebih mudah dan efisien.</p>
+            </div>
+        </section>
+
+        <!-- ABOUT SECTION -->
+        <section id="about">
+            <div class="kolom">
+                <p class="deskripsi">We are a group of</p>
+                <h2>Team Fafa</h2>
+                <p>Team Fafa adalah kelompok yang terdiri dari 10 anggota yang berdedikasi untuk mengembangkan solusi teknologi inovatif dalam bidang kehadiran (attendance) menggunakan sistem pengenalan wajah (facial recognition). Dengan semangat kolaborasi dan keahlian multidisiplin, tim ini bertujuan untuk menciptakan alat yang efisien, akurat, dan ramah pengguna untuk memenuhi kebutuhan absensi di sektor pendidikan</p>
+            </div>
+            <div class="our-team">
+                <div class="team-list"><img src="{{ url_for('static', filename='picture/bisma.jpg') }}" alt="Foto Bisma"><p>Bisma Odeng</p></div>
+                <div class="team-list"><img src="{{ url_for('static', filename='picture/joko.jpg') }}" alt="Foto Joko"><p>Joko Magic</p></div>
+                <div class="team-list"><img src="{{ url_for('static', filename='picture/faris.jpeg') }}" alt="Foto Faris"><p>Fariz Lumer</p></div>
+                <div class="team-list"><img src="{{ url_for('static', filename='picture/atta.jpg') }}" alt="Foto Atta"><p>Atta Alarm</p></div>
+                <div class="team-list"><img src="{{ url_for('static', filename='picture/shafli.jpg') }}" alt="Foto Shafli"><p>Shaply PlyLumer</p></div>
+                <div class="team-list"><img src="{{ url_for('static', filename='picture/ikhsan.jpg') }}" alt="Foto Ikhsan"><p>Ikhsan Tofu</p></div>
+                <div class="team-list"><img src="{{ url_for('static', filename='picture/yussa.jpg') }}" alt="Foto Yussa"><p>Yussa Lumer</p></div>
+                <div class="team-list"><img src="{{ url_for('static', filename='picture/ian.jpg') }}" alt="Foto Hakim"><p>Hakim Bolbi</p></div>
+                <div class="team-list"><img src="{{ url_for('static', filename='picture/depan.jpg') }}" alt="Foto Devan"><p>Devan Odeng</p></div>
+                <div class="team-list"><img src="{{ url_for('static', filename='picture/husni.jpg') }}" alt="Foto Husni"><p>Husni Churoreo</p></div>
+           </div>
+       </section>
+
+        <!-- ATTENDANCE (ABSEN) SECTION -->
+        <section id="absen">
+            <div class="main-wrapper">
+                <div class="kamera-section">
+                    <div class="kamera-header">
+                        <h1 class="kamera-button">Live Absensi Kamera</h1>
+                        <button id="capture-btn">Capture Absen</button>
+                    </div>
+                    <img id="cameraFeed" src="{{ url_for('video_feed') }}" alt="Camera Feed">
+                    <canvas id="captureCanvas" style="display:none;"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- HISTORY SECTION -->
+        <section id="histori">
+            <div class="container">
+                <div class="histori-header">
+                    <h1>History Absen</h1>
+                    <!-- Grup untuk tombol-tombol -->
+                    <div class="btn-group">
+                        <button id="refresh-histori-btn">Refresh Data</button>
+                        <button id="reset-histori-btn">Reset History</button>
+                    </div>
+                </div>
+                <table class="attendance-table">
+                    <thead>
+                        <tr>
+                            <th>Nama</th>
+                            <th>Tanggal</th>
+                            <th>Jam Masuk</th>
+                        </tr>
+                    </thead>
+                    <tbody id="histori-tbody">
+                        {% if histori %}
+                            {% for absen in histori %}
+                            <tr>
+                                <td>{{ absen.Nama }}</td>
+                                <td>{{ absen.Tanggal }}</td>
+                                <td>{{ absen.Jam }}</td>
+                            </tr>
+                            {% endfor %}
+                        {% else %}
+                            <tr>
+                                <td colspan="3" style="text-align: center;">Belum ada riwayat absensi.</td>
+                            </tr>
+                        {% endif %}
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="wrapper">
+            <div class="info-section">
+                <h3>Team Fafa</h3>
+                <p>Memberikan solusi absen yang lebih fleksibel dengan memanfaatkan face detection.</p>
+                <p>Email: <a href="mailto:FafaTeam@gmail.com">FafaTeam@gmail.com</a></p>
+                <div class="connect-box">
+                    <h4>Connect With Us</h4>
+                    <input type="email" placeholder="Email Address" />
+                </div>
+                <p class="copyright">Copyright, Fafa Team 2025, All rights reserved.</p>
+                <div class="icons">
+                    <span>📱 🌐 👍 📸 ▶ 🐦</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const refreshBtn = document.getElementById('refresh-histori-btn');
+        const historiTbody = document.getElementById('histori-tbody');
+
+        function refreshHistory() {
+            fetch('/api/histori')
+                .then(response => response.json())
+                .then(data => {
+                    historiTbody.innerHTML = '';
+                    if (data.length === 0) {
+                        historiTbody.innerHTML = '<tr><td colspan="3" style="text-align: center;">Belum ada riwayat absensi.</td></tr>';
+                    } else {
+                        data.forEach(absen => {
+                            const row = `<tr><td>${absen.Nama}</td><td>${absen.Tanggal}</td><td>${absen.Jam}</td></tr>`;
+                            historiTbody.innerHTML += row;
+                        });
+                    }
+                })
+                .catch(error => console.error('Error fetching history data:', error));
+        }
+        if(refreshBtn) {
+            refreshBtn.addEventListener('click', refreshHistory);
+        }
+
+        const captureBtn = document.getElementById('capture-btn');
+        const videoFeed = document.getElementById('cameraFeed');
+        const canvas = document.getElementById('captureCanvas');
+        
+        if(captureBtn && videoFeed && canvas) {
+            const context = canvas.getContext('2d');
+            captureBtn.addEventListener('click', function() {
+                canvas.width = videoFeed.clientWidth;
+                canvas.height = videoFeed.clientHeight;
+                context.drawImage(videoFeed, 0, 0, canvas.width, canvas.height);
+                const imageDataUrl = canvas.toDataURL('image/jpeg');
+                fetch('/capture', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ image: imageDataUrl })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    alert(data.message);
+                    if (data.status === 'success' || data.status === 'info') {
+                        refreshHistory();
+                    }
+                })
+                .catch(error => alert('Gagal mengirim gambar ke server.'));
+            });
+        }
+
+        // --- SCRIPT UNTUK TOMBOL RESET ---
+        const resetBtn = document.getElementById('reset-histori-btn');
+        if (resetBtn) {
+            resetBtn.addEventListener('click', function() {
+                // Tampilkan dialog konfirmasi sebelum menghapus
+                const isConfirmed = confirm('Apakah Anda yakin ingin menghapus semua riwayat absensi? Tindakan ini tidak dapat dibatalkan.');
+                
+                if (isConfirmed) {
+                    // Jika pengguna menekan "OK", kirim permintaan ke server
+                    fetch('/reset_history', {
+                        method: 'POST'
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        alert(data.message); // Tampilkan pesan dari server
+                        if (data.status === 'success') {
+                            refreshHistory(); // Refresh tabel untuk menampilkannya kosong
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error saat mereset histori:', error);
+                        alert('Gagal mereset histori.');
+                    });
+                }
+            });
+        }
+    </script>
+</body>
+</html>
